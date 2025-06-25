@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 // Esta es la estructura basica en CLI
 // function App() {
@@ -14,29 +14,24 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 function App() {
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text style={styles.red}>just de color red</Text>
-        <Text style={styles.bigBlue}>just bigBlue</Text>
-        <Text style={[styles.bigBlue, styles.red]}>bigBlue, then red</Text>
-        <Text style={[styles.red, styles.bigBlue]}>red, then bigBlue</Text>
-      </View>
-    </ScrollView>
+    <View style={[styles.container, styles.direction]}>
+      <View style={[styles.redContainer, styles.column]} />
+      <View style={[styles.darkorangeContainer, styles.column]} />
+      <View style={[styles.greenContainer, styles.column]} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    flex: 1,
+    padding: 20,
   },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 50,
-  },
-  red: {
-    color: 'red',
-  },
+  direction: { flexDirection: 'column' },
+  column: { flex: 1 },
+  redContainer: { backgroundColor: 'red' },
+  darkorangeContainer: { backgroundColor: 'darkorange' },
+  greenContainer: { backgroundColor: 'green' },
 });
 
 export default App;

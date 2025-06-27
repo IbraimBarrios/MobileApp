@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import {
-  ScrollView,
   View,
   TextInput,
   StyleSheet,
   Button,
   SafeAreaView,
+  FlatList,
+  Text,
+  ListRenderItem,
 } from 'react-native';
 
+type Item = {
+  text: string;
+};
+
 const TodoListScreen = () => {
-  const [todoList, setTodoList] = useState<string[]>([]);
+  const [todoListData, setTodoListData] = useState<Item[]>([]);
   const [todoText, setTodoText] = useState<string>('');
 
   const handleChangeText = (text: string) => {
@@ -18,17 +24,21 @@ const TodoListScreen = () => {
 
   const handelButtonPress = () => {
     if (todoText.trim().length > 0) {
-      setTodoList(value => value.concat(todoText));
+      setTodoListData(value => value.concat({ text: todoText }));
       setTodoText('');
     }
   };
 
+  const handleRenderListItem: ListRenderItem<Item> = ({ item }) => {
+    return <Text>{item.text}</Text>;
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1}}>
-      <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.viewContainer}>
         <View>
           <TextInput
-            placeholder="Search..."
+            placeholder="Escribe tu palabra.."
             style={styles.input}
             placeholderTextColor="#C4C4C4"
             value={todoText}
@@ -36,7 +46,14 @@ const TodoListScreen = () => {
           />
           <Button title="Enter" onPress={handelButtonPress} />
         </View>
-      </ScrollView>
+        <View>
+          <FlatList
+            data={todoListData}
+            renderItem={handleRenderListItem}
+            keyExtractor={item => item.text}
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -45,6 +62,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFBFB',
+  },
+  viewContainer: {
     paddingTop: 16,
     paddingBottom: 16,
     paddingLeft: 12,

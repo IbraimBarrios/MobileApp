@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { ScrollView, View, TextInput, StyleSheet, Button } from 'react-native';
+import {
+  ScrollView,
+  View,
+  TextInput,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+} from 'react-native';
 
 const TodoListScreen = () => {
   const [todoList, setTodoList] = useState<string[]>([]);
@@ -11,24 +18,26 @@ const TodoListScreen = () => {
 
   const handelButtonPress = () => {
     if (todoText.trim().length > 0) {
-      setTodoList((value) => value.concat(todoText));
-      setTodoText("");
+      setTodoList(value => value.concat(todoText));
+      setTodoText('');
     }
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
-        <TextInput
-          placeholder="Search..."
-          style={styles.input}
-          placeholderTextColor="#C4C4C4"
-          value={todoText}
-          onChangeText={handleChangeText}
-        />
-        <Button title="Enter" onPress={handelButtonPress} />
-      </View>
-    </ScrollView>
+    <SafeAreaView style={{ flex: 1}}>
+      <ScrollView style={styles.container}>
+        <View>
+          <TextInput
+            placeholder="Search..."
+            style={styles.input}
+            placeholderTextColor="#C4C4C4"
+            value={todoText}
+            onChangeText={handleChangeText}
+          />
+          <Button title="Enter" onPress={handelButtonPress} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

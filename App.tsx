@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoListScreen from './src/views/TodoListScreen';
+import Routes from './src/routers';
 
 // Esta es la estructura basica en CLI
 // function App() {
@@ -14,7 +14,9 @@ import TodoListScreen from './src/views/TodoListScreen';
 // }
 
 function App() {
-  return <TodoListScreen />;
+  return (
+      <Routes />
+  ); 
 }
 
 export default App;

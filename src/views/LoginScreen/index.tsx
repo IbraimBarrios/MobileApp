@@ -1,6 +1,23 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
-const LoginScreen = () => <Text>Login Screen</Text>;
+const LoginScreen = () => {
+  return (
+    <View>
+      <Image
+        style={styles.image}
+        source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  image: {
+    width: 50,
+    height: 50,
+    alignSelf: 'center',
+  },
+});
 
 export default LoginScreen;

@@ -10,15 +10,20 @@ const Routes = () => {
   const RootStack = createNativeStackNavigator({
     initialRouteName: 'Login',
     screens: {
-      Login: LoginScreen,
+      Login: {
+        screen: LoginScreen,
+        options: {
+          headerShown: false
+        },
+      },
       Home: HomeScreen,
       TodoList: TodoListScreen,
-    }
+    },
   });
 
   const Navigation = createStaticNavigation(RootStack);
 
-  return <Navigation />
+  return <Navigation />;
 };
 
 export default Routes;

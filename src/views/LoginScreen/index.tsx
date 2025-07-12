@@ -1,7 +1,32 @@
-import React from 'react';
-import { Button, Image, StyleSheet, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Alert,
+  Button,
+  Image,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 
 const LoginScreen = () => {
+  const [user, setUser] = useState<string>('');
+  const [password, setPassword] = useState('');
+
+  const handleUserTextChange = (text: string) => setUser(text);
+  const handlePasswordTextChange = (text: string) => setPassword(text);
+
+  const handleSingInPress = () => {
+    if (user.trim().length > 0 && password.trim().length > 0) {
+      if (user === 'facilito' && password === 'codigo123') {
+        
+      } else {
+        Alert.alert('Error', 'El usuario y/o contraseña incorrectos');
+      }
+    } else {
+      Alert.alert('Error', 'Debes ingresar usuario y contraseña');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -11,14 +36,21 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.inputsContainer}>
-        <TextInput placeholder="user" style={styles.textInput} />
+        <TextInput
+          placeholder="user"
+          style={styles.textInput}
+          onChangeText={handleUserTextChange}
+          value={user}
+        />
         <TextInput
           placeholder="password"
           style={styles.textInput}
           secureTextEntry
+          onChangeText={handlePasswordTextChange}
+          value={password}
         />
       </View>
-      <Button color="#1976D2" title="Sing in" />
+      <Button color="#1976D2" title="Sing in" onPress={handleSingInPress} />
     </View>
   );
 };

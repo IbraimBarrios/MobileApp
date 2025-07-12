@@ -1,3 +1,6 @@
+import {
+  useNavigation,
+} from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   Alert,
@@ -9,6 +12,8 @@ import {
 } from 'react-native';
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
+
   const [user, setUser] = useState<string>('');
   const [password, setPassword] = useState('');
 
@@ -18,7 +23,7 @@ const LoginScreen = () => {
   const handleSingInPress = () => {
     if (user.trim().length > 0 && password.trim().length > 0) {
       if (user === 'facilito' && password === 'codigo123') {
-        
+        navigation.navigate('Home');
       } else {
         Alert.alert('Error', 'El usuario y/o contraseña incorrectos');
       }

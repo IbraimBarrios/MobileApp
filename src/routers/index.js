@@ -9,13 +9,9 @@ import HomeScreen from '../views/HomeScreen';
 const Routes = () => {
   const RootStack = createNativeStackNavigator({
     initialRouteName: 'Login',
+    screenOptions: {headerShown: false},
     screens: {
-      Login: {
-        screen: LoginScreen,
-        options: {
-          headerShown: false
-        },
-      },
+      Login: LoginScreen,
       Home: HomeScreen,
       TodoList: TodoListScreen,
     },

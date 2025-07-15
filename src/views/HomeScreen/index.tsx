@@ -1,7 +1,17 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -12,6 +22,10 @@ const HomeScreen = () => {
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>Welcome back, User!</Text>
+        <Button
+          title="Lista de tareas"
+          onPress={() => navigation.navigate('TodoList')}
+        />
       </View>
     </SafeAreaView>
   );

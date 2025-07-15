@@ -9,11 +9,28 @@ import HomeScreen from '../views/HomeScreen';
 const Routes = () => {
   const RootStack = createNativeStackNavigator({
     initialRouteName: 'Login',
-    screenOptions: {headerShown: false},
+    screenOptions: { headerShown: false },
     screens: {
       Login: LoginScreen,
       Home: HomeScreen,
-      TodoList: TodoListScreen,
+      TodoList: {
+        screen: TodoListScreen,
+        options: {
+          headerTitle: 'Lista de tareas',
+          headerShown: true,
+          headerBackButtonDisplayMode: 'minimal',
+          headerShadowVisible: false,
+
+          // se añade color al header
+          // headerStyle: {
+          //   backgroundColor: '#6200ee',
+          // },
+          // headerTintColor: 'white', // ⬅️ color del ícono de "back" y texto del título
+          // headerTitleStyle: {
+          //   fontWeight: 'bold', // opcional: personaliza el texto
+          // },
+        },
+      },
     },
   });
 
